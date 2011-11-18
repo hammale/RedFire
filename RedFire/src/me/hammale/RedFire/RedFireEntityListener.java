@@ -6,6 +6,7 @@ import java.util.List;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.block.BlockFace;
 import org.bukkit.block.Sign;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.LivingEntity;
@@ -80,12 +81,18 @@ public class RedFireEntityListener extends EntityListener {
 	      				if(ran == 13){
 	      					  damage = 13;
 	      				}			
-	      					 ItemStack item1 = new ItemStack(35, 20, damage);
+	      					 ItemStack item1 = new ItemStack(35, 1, damage);
 	      					 Location drop = event.getLocation();
 	      					 Block b = drop.getBlock();
-	      					 b.setTypeId(7);
-	      			         b.getWorld().dropItemNaturally(drop, item1);
-	      			         System.out.println("BOOM!");
+	      					 int x = 1;
+	      					 while(x <= 10){
+	      					Block b1 = b.getRelative(BlockFace.UP, x);
+	      					//b1.setTypeId(20);
+	      					Location l = b1.getLocation();
+	      					b1.getWorld().dropItem(l, item1);
+	      					x++;
+	      					 }
+	      					
 	      		//}		  
 	      	  //}
 	      	//}	  
